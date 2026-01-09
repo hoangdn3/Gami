@@ -68,23 +68,23 @@ class DragonBoatRace {
     this.submitBtn.disabled = true;
   }
 
+
   updateScoreCount() {
     const totalQuestions = this.questions.length;
-    const currentItems = this.scoreContainer.querySelectorAll('.score-item').length;
+    const maxDisplay = 5;
+    const currentGroup = Math.floor(this.currentQuestion / maxDisplay);
+    const startIndex = currentGroup * maxDisplay;
+    const endIndex = Math.min(startIndex + maxDisplay, totalQuestions);
+    const displayCount = endIndex - startIndex;
 
-    if (totalQuestions > currentItems) {
-      for (let i = currentItems; i < totalQuestions; i++) {
-        const scoreItem = document.createElement('div');
-        scoreItem.className = 'score-item';
-        scoreItem.dataset.index = i;
-        scoreItem.innerHTML = '<img src="assets/Score.png" alt="Score">';
-        this.scoreContainer.appendChild(scoreItem);
-      }
-    } else if (totalQuestions < currentItems) {
-      const items = this.scoreContainer.querySelectorAll('.score-item');
-      for (let i = currentItems - 1; i >= totalQuestions; i--) {
-        items[i].remove();
-      }
+    this.scoreContainer.innerHTML = '';
+
+    for (let i = startIndex; i < endIndex; i++) {
+      const scoreItem = document.createElement('div');
+      scoreItem.className = 'score-item';
+      scoreItem.dataset.index = i;
+      scoreItem.innerHTML = '<img src="assets/Score.png" alt="Score">';
+      this.scoreContainer.appendChild(scoreItem);
     }
   }
 
@@ -191,16 +191,18 @@ class DragonBoatRace {
   }
 
   updateScore() {
+    this.updateScoreCount();
     const scoreItems = this.scoreContainer.querySelectorAll('.score-item');
-    scoreItems.forEach((item, index) => {
+    scoreItems.forEach((item) => {
+      const actualIndex = parseInt(item.dataset.index);
       item.classList.remove('active', 'completed-correct', 'completed-wrong');
-      if (index < this.currentQuestion) {
-        if (this.answersHistory[index]) {
+      if (actualIndex < this.currentQuestion) {
+        if (this.answersHistory[actualIndex]) {
           item.classList.add('completed-correct');
         } else {
           item.classList.add('completed-wrong');
         }
-      } else if (index === this.currentQuestion) {
+      } else if (actualIndex === this.currentQuestion) {
         item.classList.add('active');
       }
     });
