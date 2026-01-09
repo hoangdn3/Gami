@@ -179,14 +179,25 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   color: #4a2c00;
-  text-align: justify;
-  text-align-last: left;
+  text-align: left;
   padding: 20px 10px;
   margin-left: -60px;
   margin-right: -60px;
   line-height: 1.4;
   width: calc(100% + 120px);
   box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.question-text .katex-display {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.question-text .katex {
+  font-size: 0.95rem;
 }
 
 .question-text p {
