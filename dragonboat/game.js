@@ -34,6 +34,7 @@ class DragonBoatRace {
 
   async init() {
     this.showLoading();
+    this.setPlayerName();
     try {
       this.questions = await loadQuestionsFromApi();
       this.updateScoreCount();
@@ -44,6 +45,15 @@ class DragonBoatRace {
       this.hideLoading();
     } catch (error) {
       this.showError(error.message);
+    }
+  }
+
+  setPlayerName() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const playerName = urlParams.get('name') || 'User';
+    const playerNameEl = document.getElementById('playerName');
+    if (playerNameEl) {
+      playerNameEl.textContent = playerName;
     }
   }
 

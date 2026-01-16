@@ -1,4 +1,1 @@
-dragonpeak/node_modules/
-dragonpeak-old/
-node_modules/
-.DS_Store
+**/node_modules/

@@ -526,6 +526,24 @@ body {
   }
 }
 
+.player-name {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FFF8E7;
+  color: #4a2c00;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 3px solid #8B0000;
+  pointer-events: none;
+}
+
 .game-overlay {
   position: fixed;
   top: 0;
