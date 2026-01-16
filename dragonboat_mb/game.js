@@ -126,7 +126,7 @@ class DragonBoatRace {
         return;
       }
 
-      if (e.target.tagName === 'IMG' && !e.target.classList.contains('question-bg') && !e.target.classList.contains('answer-bg') && !isExcluded) {
+      if (e.target.tagName === 'IMG' && !e.target.classList.contains('question-bg') && !e.target.classList.contains('answer-bg') && !e.target.classList.contains('submit-btn-img') && !isExcluded) {
         this.openImageModal(e.target.src);
       }
     });
@@ -152,6 +152,7 @@ class DragonBoatRace {
   selectAnswer(container) {
     if (this.isProcessing || this.waitingForNext) return;
 
+    GameAudio.playButtonClick();
     this.answerContainers.forEach(c => c.classList.remove('selected'));
     container.classList.add('selected');
     this.selectedAnswer = container.dataset.answer;
@@ -242,8 +243,11 @@ class DragonBoatRace {
     this.answersHistory.push(isCorrect);
 
     if (isCorrect) {
+      GameAudio.playCorrectAnswer();
       this.userPosition++;
       this.movePlayer(this.userPlayer, this.userPosition);
+    } else {
+      GameAudio.playWrongAnswer();
     }
 
     if (this.bot1Position < this.maxPosition && Math.random() >= 0.5) {
@@ -257,13 +261,13 @@ class DragonBoatRace {
 
     this.waitingForNext = true;
     this.isProcessing = false;
-    this.submitBtn.textContent = 'Tiếp tục';
+    this.submitBtn.querySelector('.submit-btn-img').src = 'assets/continue-button.png';
   }
 
   goToNextQuestion() {
     this.currentQuestion++;
     this.waitingForNext = false;
-    this.submitBtn.textContent = 'Trả lời';
+    this.submitBtn.querySelector('.submit-btn-img').src = 'assets/submit-button.png';
 
     if (this.userPosition >= this.maxPosition || this.currentQuestion >= this.questions.length) {
       this.endGame();
@@ -303,6 +307,7 @@ class DragonBoatRace {
       this.overlayMessage.textContent = 'Hành trình vạn dặm bắt đầu từ một bước chân. Hãy thử lại nhé!';
     }
 
+    GameAudio.playFinishGame();
     this.gameOverlay.classList.add('show');
   }
 

@@ -13,6 +13,22 @@ body {
   margin: 0;
   padding: 0;
   background-color: #8B0000;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
 }
 
 .game-container {
@@ -45,7 +61,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 20px;
+  padding: 0.5rem 1rem 0rem 1rem;
 }
 
 .game-title {
@@ -145,6 +161,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 0 15px;
+  padding-top: 0;
   padding-bottom: 280px;
   overflow-y: auto;
   scrollbar-width: none;
@@ -159,9 +176,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0;
   width: 100%;
-  margin-top: -10px;
 }
 
 .question-container {
@@ -174,6 +190,7 @@ body {
   background-repeat: no-repeat;
   padding: 10% 12%;
   box-sizing: border-box;
+  margin-top: -1rem;
 }
 
 .question-bg {
@@ -188,7 +205,7 @@ body {
   font-weight: 600;
   color: #4a2c00;
   text-align: justify;
-  padding: 10px 5px;
+  padding: 2% 5%;
   line-height: 1.4;
   width: 100%;
   max-height: 120px;
@@ -252,12 +269,12 @@ body {
 }
 
 .answers-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
-  margin-top: 10px;
-  padding: 0 20px;
+  margin-top: 0.25rem;
+  padding: 0 1rem;
   box-sizing: border-box;
 }
 
@@ -418,54 +435,39 @@ body {
 }
 
 .submit-btn {
-  margin-top: 4px;
-  width: auto;
-  padding: 6px 20px;
-  font-family: 'Medium SF Compact Rounded', 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(180deg, #FFB347 0%, #FF8C00 50%, #E67300 100%);
-  border: 3px solid #8B4513;
-  border-radius: 6px;
+  margin-top: 1rem;
+  padding: 0;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  box-shadow:
-    0 3px 0 #6B3410,
-    0 4px 8px rgba(0, 0, 0, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.15s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  transition: all 0.2s ease;
   position: relative;
   z-index: 20;
-  text-shadow:
-    2px 2px 0 #8B4513,
-    -1px -1px 0 #8B4513,
-    1px -1px 0 #8B4513,
-    -1px 1px 0 #8B4513;
+}
+
+.submit-btn-img {
+  height: 2.75rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .submit-btn-img {
+    height: 3.5rem;
+  }
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow:
-    0 6px 0 #6B3410,
-    0 8px 15px rgba(0, 0, 0, 0.35),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  background: linear-gradient(180deg, #FFC266 0%, #FFA500 50%, #FF8C00 100%);
+  transform: scale(1.05);
 }
 
 .submit-btn:active:not(:disabled) {
-  transform: translateY(2px);
-  box-shadow:
-    0 2px 0 #6B3410,
-    0 3px 5px rgba(0, 0, 0, 0.25),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transform: scale(0.95);
 }
 
 .submit-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  filter: grayscale(50%);
 }
 
 .race-section {
@@ -818,4 +820,49 @@ body {
   .player {
     width: 70px;
   }
+}
+
+.image-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal.show {
+  display: flex;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.modal-close:hover {
+  color: #ccc;
+}
+
+.modal-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.katex,
+.katex-html,
+.katex-display {
+  position: relative;
+  z-index: 1 !important;
 }

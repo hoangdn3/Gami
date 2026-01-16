@@ -67,7 +67,9 @@
           </div>
         </div>
 
-        <button class="submit-btn" id="submitBtn" disabled>Trả lời</button>
+        <button class="submit-btn" id="submitBtn" disabled>
+          <img src="assets/submit-button.png" alt="Trả lời" class="submit-btn-img">
+        </button>
       </div>
     </main>
 
@@ -78,14 +80,14 @@
         </div>
         <div class="race-lanes">
           <div class="race-lane" id="lane1">
-            <div class="player bot1" id="bot1Player">
-              <img src="assets/Boat.bot.png" alt="Bot 1">
-            </div>
-          </div>
-          <div class="race-lane" id="lane2">
             <div class="player user" id="userPlayer">
               <span class="player-name" id="playerName">User</span>
               <img src="assets/Boat.user.png" alt="User">
+            </div>
+          </div>
+          <div class="race-lane" id="lane2">
+            <div class="player bot1" id="bot1Player">
+              <img src="assets/Boat.bot.png" alt="Bot 1">
             </div>
           </div>
           <div class="race-lane" id="lane3">
@@ -115,6 +117,7 @@
   </div>
 
   <script src="questions.js"></script>
+  <script src="audio.js"></script>
   <script src="game.js"></script>
 </body>
 
